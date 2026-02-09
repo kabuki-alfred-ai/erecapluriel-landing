@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terracotta: #C65D3B;
+  --color-ocean: #2E6B75;
+  --color-abricot: #F4A261;
+  --color-sable: #F7F5F3;
+  --color-terre: #2C2A28;
+}
+
+:root {
+  --font-sora: 'Sora', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-crimson: 'Crimson Text', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  background-color: var(--color-sable);
+  color: var(--color-terre);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sora);
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #C65D3B 0%, #2E6B75 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.quote-font {
+  font-family: var(--font-crimson);
+  font-style: italic;
+}

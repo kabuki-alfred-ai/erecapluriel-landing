@@ -10,7 +10,7 @@ WORKDIR /app
 RUN git clone https://github.com/kabuki-alfred-ai/erecapluriel-landing.git .
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Build the application
 RUN npm run build

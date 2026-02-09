@@ -15,6 +15,9 @@ RUN npm install
 # Build the application
 RUN npm run build
 
+# Create public folder if it doesn't exist
+RUN mkdir -p public
+
 # Production stage
 FROM node:20-slim
 

@@ -15,9 +15,6 @@ RUN npm install
 # Build the application
 RUN npm run build
 
-# Ensure dist directory exists
-RUN mkdir -p dist && ls -la dist/
-
 # Production stage
 FROM node:20-slim
 
@@ -31,15 +28,6 @@ COPY --from=builder /app/dist ./dist
 
 # Copy node_modules
 COPY --from=builder /app/node_modules ./node_modules
-
-# Copy public if exists
-COPY --from=builder /app/public ./public 2>/dev/null || echo "No public folder"
-
-# Copy next.config
-COPY --from=builder /app/next.config.* ./ 2>/dev/null || echo "No next.config"
-
-# Verify dist exists
-RUN ls -la dist/ || echo "WARNING: dist not found"
 
 EXPOSE 3000
 

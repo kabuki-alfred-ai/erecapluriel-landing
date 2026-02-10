@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRef } from "react";
 
 // Animation constants - Emma's signature
-const EASE_OUT_CUBIC = [0.22, 1, 0.36, 1];
+const EASE_OUT_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const STAGGER_DELAY = 0.1;
 
 export default function HeroCinematic() {

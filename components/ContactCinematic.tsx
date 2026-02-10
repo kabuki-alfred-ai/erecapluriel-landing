@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { Send, Phone, Mail, MapPin, Clock, CheckCircle } from "lucide-react";
 import { siteData } from "@/lib/data";
 
-const EASE_OUT_CUBIC = [0.22, 1, 0.36, 1];
+const EASE_OUT_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function ContactCinematic() {
   const ref = useRef(null);

@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-const EASE_OUT_CUBIC = [0.22, 1, 0.36, 1];
+const EASE_OUT_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const expertises = [
   {

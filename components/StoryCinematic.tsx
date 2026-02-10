@@ -3,7 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const EASE_OUT_CUBIC = [0.22, 1, 0.36, 1];
+const EASE_OUT_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function StoryCinematic() {
   const ref = useRef(null);

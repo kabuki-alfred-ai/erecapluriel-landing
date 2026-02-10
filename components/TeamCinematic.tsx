@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { Quote, MapPin } from "lucide-react";
 import Image from "next/image";
 
-const EASE_OUT_CUBIC = [0.22, 1, 0.36, 1];
+const EASE_OUT_CUBIC: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const teamMembers = [
   {

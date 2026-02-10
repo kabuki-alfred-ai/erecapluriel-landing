@@ -1,28 +1,22 @@
-import Header from "@/components/Header";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import ProfilesSection from "@/components/ProfilesSection";
-import TeamSection from "@/components/TeamSection";
-import MapSection from "@/components/MapSection";
-import ExpertisesSection from "@/components/ExpertisesSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import NewsSection from "@/components/NewsSection";
-import ContactSection from "@/components/ContactSection";
+import HeaderCinematic from "@/components/HeaderCinematic";
+import HeroCinematic from "@/components/HeroCinematic";
+import StoryCinematic from "@/components/StoryCinematic";
+import ExpertisesCinematic from "@/components/ExpertisesCinematic";
+import TeamCinematic from "@/components/TeamCinematic";
+import AgencesCinematic from "@/components/AgencesCinematic";
+import ContactCinematic from "@/components/ContactCinematic";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen pt-20">
-      <Header />
-      <HeroSection />
-      <AboutSection />
-      <ProfilesSection />
-      <TeamSection />
-      <MapSection />
-      <ExpertisesSection />
-      <TestimonialsSection />
-      <NewsSection />
-      <ContactSection />
+    <main className="min-h-screen">
+      <HeaderCinematic />
+      <HeroCinematic />
+      <StoryCinematic />
+      <ExpertisesCinematic />
+      <TeamCinematic />
+      <AgencesCinematic />
+      <ContactCinematic />
       <Footer />
     </main>
   );

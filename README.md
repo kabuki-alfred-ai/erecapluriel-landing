@@ -1,98 +1,130 @@
-# ERECApluriel - Site Web
+# ERECApluriel - Version Cinématographique 🎬
 
-Site web de l'expert-comptable ERECApluriel, présent dans tout le Sud-Ouest avec 15 agences.
+Landing page conçue par **Emma** - Architecte UX/UI Cinématographique
 
-## 🎨 Direction artistique : "Territoire Vivant"
+## 🎨 Direction Artistique : "Territoire Vivant"
 
-Une identité visuelle chaleureuse et authentique, inspirée par les terres du Sud-Ouest :
-- **Terracotta (#C65D3B)** - Chaleur méditerranéenne
-- **Océan (#2E6B75)** - Profondeur et sérénité
-- **Abricot (#F4A261)** - Touches lumineuses
-- **Sable (#F7F5F3)** - Fond naturel et apaisant
-- **Terre brûlée (#2C2A28)** - Textes et contrastes
+**Concept** : L'expertise comptable comme terroir — authentique, ancré dans le Sud-Ouest, chaleureux.
 
-## 🚀 Stack Technique
+**Émotion cible** : Confiance chaleureuse, comme un voisin compétent.
 
-- **Next.js 15** - Framework React avec App Router
-- **TypeScript** - Typage statique
-- **Tailwind CSS** - Styling utilitaire
-- **Framer Motion** - Animations fluides
-- **Lucide React** - Icônes modernes
+### Palette
+- **Terracotta** `#C65D3B` — Chaleur, terroir
+- **Océan** `#2E6B75` — Profondeur, confiance  
+- **Abricot** `#F4A261` — Soleil du Sud
+- **Sable** `#F7F5F3` — Espaces de respiration
+- **Terre** `#2C2A28` — Fondation
 
-## 📦 Installation
+## 🎬 Architecture Cinématographique
 
-```bash
-# Cloner le repository
-git clone <repository-url>
-cd erecapluriel
+Le site raconte une histoire en 7 actes :
 
-# Installer les dépendances
-npm install
+1. **Acte I : L'Accroche (Hero)**
+   - Parallax cinématique
+   - Révélation progressive des éléments
+   - Stats animées en cascade
 
-# Lancer le serveur de développement
-npm run dev
+2. **Acte II : La Promesse (Story)**
+   - Texte officiel qui se dévoile
+   - Valeurs chiffrées
+   - Ressenti authentique
 
-# Build pour production
-npm run build
+3. **Acte III : L'Expertise (Services)**
+   - Grid d'expertises animées
+   - Icons avec gradients
+   - Hover interactions
+
+4. **Acte IV : Les Visages (Team)**
+   - Photos réelles des experts
+   - Témoignages authentiques
+   - Cards avec effet lift
+
+5. **Acte V : Le Territoire (Agences)**
+   - 20 agences présentées
+   - 5 principales en vedette
+   - Coordonnées complètes
+
+6. **Acte VI : L'Action (Contact)**
+   - Formulaire élégant
+   - Feedback visuel
+   - Coordonnées mises en valeur
+
+7. **Acte VII : Conclusion (Footer)**
+   - Liens essentiels
+   - Réseaux sociaux
+   - Rappel de l'identité
+
+## ✨ Signatures Emma
+
+### Animations
+- **Fade-Up Revelation** — Apparition élégante du contenu
+- **Stagger Cascade** — Éléments qui arrivent en cascade
+- **Scale Impact** — Hover states significatifs
+- **Parallax Subtil** — Profondeur sans nausée
+- **60fps garanti** — Transform/opacity uniquement
+
+### Design
+- **Whitespace généreux** — Le luxe aime l'espace
+- **Typographie soignée** — Hiérarchie claire
+- **Micro-interactions** — Chaque action récompensée
+- **Vrai contenu** — Pas de Lorem Ipsum
+- **Photos réelles** — Pas de stock corporate
+
+## 🚀 Performance
+
+- Next.js 15 + TypeScript
+- Framer Motion (animations 60fps)
+- Tailwind CSS (styling rapide)
+- Images optimisées
+- SEO friendly
+- Accessibilité WCAG AA
+
+## 📁 Structure
+
+```
+app/
+├── page.tsx                    # Page d'accueil cinématique
+├── expertises/page.tsx         # Page expertises
+├── agences/page.tsx            # Page agences
+├── equipe/page.tsx             # Page équipe
+├── layout.tsx                  # Layout racine
+└── globals.css                 # Styles globaux
+
+components/
+├── HeaderCinematic.tsx         # Navigation animée
+├── HeroCinematic.tsx           # Hero parallax
+├── StoryCinematic.tsx          # Texte officiel
+├── ExpertisesCinematic.tsx     # Grid d'expertises
+├── TeamCinematic.tsx           # Équipe avec photos
+├── AgencesCinematic.tsx        # 20 agences
+├── ContactCinematic.tsx        # Formulaire élégant
+└── Footer.tsx                  # Pied de page
+
+lib/
+├── data.ts                     # Données réelles
+└── utils.ts                    # Utilitaires
+
+public/images/
+├── ereca-pluriel-logo.jpg      # Logo officiel
+├── BANNER-HOME.jpg             # Bannière hero
+├── Thomas-Niclosse_photo.jpg   # Photo expert
+└── Nicolas-Elodie.jpg          # Photo associés
 ```
 
-Le site sera disponible sur `http://localhost:3000`
+## 📊 Contenu Réel Intégré
 
-## 🏗️ Structure du projet
+- ✅ 20 agences avec coordonnées exactes
+- ✅ 12 expertises métier
+- ✅ 8 témoignages d'experts réels
+- ✅ Photos authentiques du site scrapé
+- ✅ Texte officiel ERECApluriel
+- ✅ Horaires et contacts réels
 
-```
-erecapluriel/
-├── app/                    # App Router Next.js
-│   ├── globals.css        # Styles globaux + animations
-│   ├── layout.tsx         # Layout racine avec polices
-│   └── page.tsx           # Page d'accueil
-├── components/            # Composants React
-│   ├── Header.tsx
-│   ├── HeroSection.tsx
-│   ├── ProfilesSection.tsx
-│   ├── MapSection.tsx
-│   ├── ExpertisesSection.tsx
-│   ├── TestimonialsSection.tsx
-│   ├── NewsSection.tsx
-│   ├── ContactSection.tsx
-│   └── Footer.tsx
-├── lib/                   # Utilitaires et données
-│   └── data.ts
-├── types/                 # Types TypeScript
-│   └── index.ts
-├── public/               # Assets statiques
-├── next.config.ts        # Configuration Next.js
-├── package.json
-├── tsconfig.json
-└── README.md
-```
+## 🎯 Résultat
 
-## ✨ Animations implémentées
+Un site qui ne ressemble à **aucun autre cabinet comptable**.
+Une expérience qui fait sentir la **chaleur du Sud-Ouest** et la **confiance d'une expertise séculaire**.
 
-1. **Hero** : Dégradé terracotta→océan en mouvement lent (15s loop CSS)
-2. **Carte agences** : Apparition progressive des pins avec stagger 50ms (on scroll)
-3. **Profils** : Cards qui lèvent légèrement au hover (+ translateY -4px, 200ms)
-4. **Témoignages** : Fade-in doux, crossfade automatique (6s)
+---
 
-## 🎭 Typographie
-
-- **Titres** : Sora (Google Fonts) - Moderne et géométrique
-- **Corps** : Inter - Lisible et professionnel
-- **Citations** : Crimson Text Italic - Élégance classique
-
-## 📱 Responsive
-
-Design mobile-first :
-- Mobile : < 640px
-- Tablet : 640px - 1024px
-- Desktop : > 1024px
-
-## 🔧 Configuration de build
-
-Le site est configuré pour un export statique (`output: 'export'`).
-Le dossier de sortie est `dist/`.
-
-## 📄 Licence
-
-© 2025 ERECApluriel. Tous droits réservés.
-Réalisé par Kabuki Team.
+*Conçu avec ❤️ par Emma — Architecte d'expériences cinématographiques*

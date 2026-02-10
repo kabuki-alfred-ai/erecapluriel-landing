@@ -1,32 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { siteData } from "@/lib/data";
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { testimonials } from "@/lib/data";
+import { useState } from "react";
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const testimonials = siteData.testimonials;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const goToPrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
-  const goToNext = () => {
+  const next = () => {
     setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
+  const prev = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
   return (
-    <section id="temoignages" className="py-20 lg:py-32 bg-[#F7F5F3]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-24 bg-[#F7F5F3]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,80 +27,80 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[#C65D3B] text-sm font-semibold uppercase tracking-wider mb-4">
-            Témoignages
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2A28] mb-6" style={{ fontFamily: 'var(--font-sora)' }}>
-            Ils nous font confiance
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2C2A28] mb-4">
+            Les mots de <span className="text-[#C65D3B]">nos experts</span>
           </h2>
+          <p className="text-lg text-[#2C2A28]/70 max-w-2xl mx-auto">
+            Découvrez la philosophie et les valeurs qui animent notre équipe au quotidien.
+          </p>
         </motion.div>
 
-        {/* Testimonial Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          <div className="relative min-h-[300px] flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="w-full"
-              >
-                <div className="bg-white rounded-3xl p-8 lg:p-12 shadow-lg">
-                  <div className="flex justify-center mb-8">
-                    <div className="w-16 h-16 bg-[#C65D3B]/10 rounded-full flex items-center justify-center">
-                      <Quote className="w-8 h-8 text-[#C65D3B]" />
-                    </div>
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-2xl p-8 md:p-12 shadow-xl relative"
+          >
+            <Quote className="w-12 h-12 text-[#C65D3B]/20 absolute top-8 left-8" />
+            
+            <div className="relative z-10">
+              <blockquote className="text-xl md:text-2xl text-[#2C2A28] italic mb-8 leading-relaxed">
+                "{testimonials[currentIndex].quote}"
+              </blockquote>
+              
+              {testimonials[currentIndex].fullQuote && (
+                <p className="text-[#2C2A28]/70 mb-6 leading-relaxed">
+                  {testimonials[currentIndex].fullQuote}
+                </p>
+              )}
+              
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 bg-gradient-to-br from-[#C65D3B] to-[#F4A261] rounded-full flex items-center justify-center text-white font-bold text-xl">
+                  {testimonials[currentIndex].name.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-semibold text-[#2C2A28]">
+                    {testimonials[currentIndex].name}
                   </div>
-                  
-                  <blockquote className="text-xl lg:text-2xl text-[#2C2A28] text-center mb-8 quote-font leading-relaxed">
-                    "{testimonials[currentIndex].quote}"
-                  </blockquote>
-                  
-                  <div className="text-center">
-                    <div className="font-semibold text-[#2C2A28] text-lg">
-                      {testimonials[currentIndex].author}
-                    </div>
-                    <div className="text-[#C65D3B]">
-                      {testimonials[currentIndex].company}
-                    </div>
-                    <div className="text-[#2C2A28]/60 text-sm mt-1">
-                      {testimonials[currentIndex].location}
-                    </div>
+                  <div className="text-[#C65D3B] text-sm">
+                    {testimonials[currentIndex].role}
+                  </div>
+                  <div className="text-[#2C2A28]/60 text-sm">
+                    Agence {testimonials[currentIndex].agency}
                   </div>
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
+            </div>
+          </motion.div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
+          <div className="flex justify-center items-center gap-4 mt-8">
             <button
-              onClick={goToPrev}
-              className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-[#2C2A28] hover:bg-[#C65D3B] hover:text-white transition-colors"
+              onClick={prev}
+              className="p-3 rounded-full bg-white shadow hover:bg-[#C65D3B] hover:text-white transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             
-            {/* Dots */}
-            <div className="flex items-center gap-2">
-              {testimonials.map((_, index) => (
+            <div className="flex gap-2">
+              {testimonials.map((_, idx) => (
                 <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "bg-[#C65D3B] w-8"
-                      : "bg-[#2C2A28]/20 hover:bg-[#2C2A28]/40"
+                  key={idx}
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`w-2 h-2 rounded-full transition-all ${
+                    idx === currentIndex 
+                      ? "bg-[#C65D3B] w-6" 
+                      : "bg-[#C65D3B]/30"
                   }`}
                 />
               ))}
             </div>
             
             <button
-              onClick={goToNext}
-              className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center text-[#2C2A28] hover:bg-[#C65D3B] hover:text-white transition-colors"
+              onClick={next}
+              className="p-3 rounded-full bg-white shadow hover:bg-[#C65D3B] hover:text-white transition-colors"
             >
               <ChevronRight className="w-5 h-5" />
             </button>

@@ -1,17 +1,16 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { MapPin } from "lucide-react";
-import { agencies } from "@/lib/data";
+import { motion } from "framer-motion";
+import { siteData } from "@/lib/data";
+import { MapPin, Phone, Mail, Clock, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 export default function MapSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const mainAgencies = siteData.agencies.slice(0, 5); // Les 5 principales avec détails
 
   return (
-    <section id="agences" className="py-20 lg:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="agences" className="py-24 bg-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -19,119 +18,103 @@ export default function MapSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="inline-block text-[#2E6B75] text-sm font-semibold uppercase tracking-wider mb-4">
-            Notre présence
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2C2A28] mb-6" style={{ fontFamily: 'var(--font-sora)' }}>
-            Toujours une agence
-            <br />
-            <span className="text-[#C65D3B]">près de chez vous</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#2C2A28] mb-4">
+            <span className="text-[#2E6B75]">20 agences</span> à votre service
           </h2>
           <p className="text-lg text-[#2C2A28]/70 max-w-2xl mx-auto">
-            De Bordeaux à la côte atlantique, nos 20 agences vous ouvrent leurs portes.
+            Du Médoc à La Rochelle, en passant par Bordeaux et le Bassin d'Arcachon, 
+            trouvez l'agence ERECApluriel la plus proche de chez vous.
           </p>
         </motion.div>
 
-        {/* Map Container */}
-        <div ref={ref} className="relative bg-[#F7F5F3] rounded-3xl p-8 lg:p-12 overflow-hidden">
-          {/* Map Background - Stylized South-West France */}
-          <div className="relative aspect-[4/3] lg:aspect-[16/9] max-w-4xl mx-auto">
-            {/* SVG Map */}
-            <svg
-              viewBox="0 0 100 100"
-              className="w-full h-full"
-              preserveAspectRatio="xMidYMid meet"
+        {/* Main Agencies */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {mainAgencies.map((agency, index) => (
+            <motion.div
+              key={agency.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="bg-[#F7F5F3] rounded-xl p-6 hover:shadow-lg transition-shadow"
             >
-              {/* Ocean */}
-              <rect x="0" y="0" width="100" height="100" fill="#E8F4F8" rx="8" />
-              
-              {/* Land mass - simplified Nouvelle-Aquitaine shape */}
-              <path
-                d="M20 80 Q15 70 20 60 Q25 50 30 40 Q35 30 45 25 Q55 20 65 25 Q75 30 85 35 Q90 45 85 55 Q80 65 70 70 Q60 75 50 80 Q40 85 30 85 Q25 85 20 80"
-                fill="#F5F0EB"
-                stroke="#2E6B75"
-                strokeWidth="0.5"
-              />
-              
-              {/* Rivers */}
-              <path
-                d="M55 25 Q58 35 55 45 Q52 55 58 65"
-                fill="none"
-                stroke="#2E6B75"
-                strokeWidth="0.8"
-                opacity="0.6"
-              />
-              <path
-                d="M45 25 Q42 35 48 45 Q52 55 48 65"
-                fill="none"
-                stroke="#2E6B75"
-                strokeWidth="0.5"
-                opacity="0.4"
-              />
-              
-              {/* Coastline detail */}
-              <path
-                d="M20 60 Q18 55 20 50 Q22 45 20 40"
-                fill="none"
-                stroke="#2E6B75"
-                strokeWidth="0.3"
-                opacity="0.5"
-              />
-            </svg>
-
-            {/* Agency Pins */}
-            {agencies.map((agency, index) => (
-              <motion.div
-                key={agency.id}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.05,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-                className="absolute group cursor-pointer"
-                style={{
-                  left: `${agency.x}%`,
-                  top: `${agency.y}%`,
-                  transform: "translate(-50%, -100%)",
-                }}
-              >
-                <div className="relative">
-                  <div className="w-8 h-8 bg-[#C65D3B] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <MapPin className="w-4 h-4 text-white" />
-                  </div>
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                    <div className="bg-[#2C2A28] text-white px-3 py-1.5 rounded-lg text-sm whitespace-nowrap">
-                      {agency.city}
-                    </div>
-                    <div className="w-2 h-2 bg-[#2C2A28] rotate-45 absolute top-full left-1/2 -translate-x-1/2 -mt-1" />
-                  </div>
+              <div className="flex items-start gap-4 mb-4">
+                <div className="w-10 h-10 bg-[#2E6B75] rounded-lg flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 text-white" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <div>
+                  <h3 className="font-semibold text-[#2C2A28]">{agency.name}</h3>
+                  <p className="text-sm text-[#2C2A28]/70">{agency.city}</p>
+                </div>
+              </div>
+
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-2 text-[#2C2A28]/70">
+                  <MapPin className="w-4 h-4 text-[#C65D3B]" />
+                  <span>{agency.address}</span>
+                </div>
+                
+                <div className="flex items-center gap-2 text-[#2C2A28]/70">
+                  <Phone className="w-4 h-4 text-[#C65D3B]" />
+                  <a href={`tel:${agency.phone?.replace(/\s/g, '')}`} className="hover:text-[#C65D3B]">
+                    {agency.phone}
+                  </a>
+                </div>
+                
+                {agency.email && (
+                  <div className="flex items-center gap-2 text-[#2C2A28]/70">
+                    <Mail className="w-4 h-4 text-[#C65D3B]" />
+                    <a href={`mailto:${agency.email}`} className="hover:text-[#C65D3B]">
+                      {agency.email}
+                    </a>
+                  </div>
+                )}
+                
+                {agency.hours && (
+                  <div className="flex items-start gap-2 text-[#2C2A28]/70">
+                    <Clock className="w-4 h-4 text-[#C65D3B] flex-shrink-0 mt-0.5" />
+                    <span className="text-xs">{agency.hours}</span>
+                  </div>
+                )}
+              </div>
+
+              {agency.mapUrl && (
+                <Link 
+                  href={agency.mapUrl}
+                  target="_blank"
+                  className="inline-flex items-center gap-1 text-[#2E6B75] text-sm mt-4 hover:underline"
+                >
+                  Voir sur Google Maps
+                  <ExternalLink className="w-3 h-3" />
+                </Link>
+              )}
+            </motion.div>
+          ))}
         </div>
 
-        {/* Cities List */}
+        {/* Other Agencies Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12"
+          transition={{ duration: 0.6 }}
+          className="bg-[#F7F5F3] rounded-2xl p-8"
         >
-          <div className="flex flex-wrap justify-center gap-3">
-            {agencies.map((agency, index) => (
-              <span
+          <h3 className="text-xl font-semibold text-[#2C2A28] mb-6 text-center">
+            Nos autres agences
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {siteData.agencies.slice(5).map((agency) => (
+              <div 
                 key={agency.id}
-                className="inline-flex items-center gap-1.5 bg-[#F7F5F3] text-[#2C2A28] px-4 py-2 rounded-full text-sm hover:bg-[#C65D3B] hover:text-white transition-colors cursor-pointer"
+                className="text-center p-4 bg-white rounded-lg hover:shadow-md transition-shadow"
               >
-                <MapPin className="w-3 h-3" />
-                {agency.city}
-              </span>
+                <div className="w-8 h-8 bg-[#C65D3B]/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <MapPin className="w-4 h-4 text-[#C65D3B]" />
+                </div>
+                <div className="font-medium text-[#2C2A28] text-sm">{agency.name}</div>
+                <div className="text-xs text-[#2C2A28]/60">{agency.city}</div>
+              </div>
             ))}
           </div>
         </motion.div>

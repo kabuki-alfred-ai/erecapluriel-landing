@@ -1,128 +1,112 @@
 "use client";
 
-import { Linkedin, Facebook, Youtube } from "lucide-react";
+import { siteData } from "@/lib/data";
+import { MapPin, Phone, Mail, Linkedin, Facebook, Youtube } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-[#2C2A28] text-white py-12 lg:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
-          {/* Logo & Description */}
+    <footer className="bg-[#2C2A28] border-t border-white/10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+          {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-[#C65D3B] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">E</span>
-              </div>
-              <span className="text-xl font-bold" style={{ fontFamily: 'var(--font-sora)' }}>
-                ERECA<span className="text-[#C65D3B]">pluriel</span>
-              </span>
-            </a>
-            <p className="text-white/70 max-w-md mb-6">
-              Votre expert-comptable dans tout le Sud-Ouest. 
-              15 agences pour vous accompagner de la création à la transmission.
+            <h3 className="text-2xl font-bold text-white mb-4">
+              <span className="text-[#C65D3B]">ERECA</span>
+              <span className="text-[#F4A261]">pluriel</span>
+            </h3>
+            <p className="text-white/60 mb-4 max-w-md">
+              {siteData.tagline}. Notre notion de proximité avec nos clients 
+              fait partie de notre façon de concevoir un partenariat efficace.
             </p>
-            <div className="flex items-center gap-4">
-              <a
-                href="https://linkedin.com"
+            <div className="flex gap-4">
+              <Link 
+                href={siteData.contact.social.linkedin}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#C65D3B] transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#C65D3B] transition-colors"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="https://facebook.com"
+              </Link>
+              <Link 
+                href={siteData.contact.social.facebook}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#C65D3B] transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#C65D3B] transition-colors"
               >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a
-                href="https://youtube.com"
+              </Link>
+              <Link 
+                href={siteData.contact.social.youtube}
                 target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-[#C65D3B] transition-colors"
+                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-[#C65D3B] transition-colors"
               >
                 <Youtube className="w-5 h-5" />
-              </a>
+              </Link>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-4" style={{ fontFamily: 'var(--font-sora)' }}>
-              Navigation
-            </h4>
-            <ul className="space-y-3">
+            <h4 className="text-white font-semibold mb-4">Navigation</h4>
+            <ul className="space-y-2">
               <li>
-                <a href="#profils" className="text-white/70 hover:text-[#F4A261] transition-colors">
-                  Profils clients
-                </a>
+                <Link href="#" className="text-white/60 hover:text-[#F4A261] transition-colors">
+                  Accueil
+                </Link>
               </li>
               <li>
-                <a href="#agences" className="text-white/70 hover:text-[#F4A261] transition-colors">
+                <Link href="#expertises" className="text-white/60 hover:text-[#F4A261] transition-colors">
+                  Nos expertises
+                </Link>
+              </li>
+              <li>
+                <Link href="#agences" className="text-white/60 hover:text-[#F4A261] transition-colors">
                   Nos agences
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#expertises" className="text-white/70 hover:text-[#F4A261] transition-colors">
-                  Expertises
-                </a>
-              </li>
-              <li>
-                <a href="#temoignages" className="text-white/70 hover:text-[#F4A261] transition-colors">
-                  Témoignages
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-white/70 hover:text-[#F4A261] transition-colors">
+                <Link href="#contact" className="text-white/60 hover:text-[#F4A261] transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="font-semibold text-lg mb-4" style={{ fontFamily: 'var(--font-sora)' }}>
-              Contact
-            </h4>
-            <ul className="space-y-3 text-white/70">
-              <li>10 Rue Furtado</li>
-              <li>33800 Bordeaux</li>
-              <li>
-                <a href="tel:0556333930" className="hover:text-[#F4A261] transition-colors">
-                  05 56 33 39 30
+            <h4 className="text-white font-semibold mb-4">Contact</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2 text-white/60">
+                <MapPin className="w-4 h-4 mt-1 flex-shrink-0" />
+                <span>{siteData.contact.address}</span>
+              </li>
+              <li className="flex items-center gap-2 text-white/60">
+                <Phone className="w-4 h-4 flex-shrink-0" />
+                <a href={`tel:${siteData.contact.phone.replace(/\s/g, '')}`}>
+                  {siteData.contact.phone}
                 </a>
               </li>
-              <li>
-                <a href="mailto:contact@erecapluriel.fr" className="hover:text-[#F4A261] transition-colors">
-                  contact@erecapluriel.fr
+              <li className="flex items-center gap-2 text-white/60">
+                <Mail className="w-4 h-4 flex-shrink-0" />
+                <a href={`mailto:${siteData.contact.email}`}>
+                  {siteData.contact.email}
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/50 text-sm">
-            © {currentYear} ERECApluriel. Tous droits réservés.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-white/40 text-sm">
+            © {new Date().getFullYear()} ERECApluriel. Tous droits réservés.
           </p>
-          <div className="flex items-center gap-6 text-sm">
-            <a href="#" className="text-white/50 hover:text-white transition-colors">
+          <div className="flex gap-6 text-sm text-white/40">
+            <Link href="#" className="hover:text-white transition-colors">
               Mentions légales
-            </a>
-            <a href="#" className="text-white/50 hover:text-white transition-colors">
+            </Link>
+            <Link href="#" className="hover:text-white transition-colors">
               Politique de confidentialité
-            </a>
+            </Link>
           </div>
-          <p className="text-white/50 text-sm">
-            Réalisé par <span className="text-[#F4A261]">Kabuki Team</span>
-          </p>
         </div>
       </div>
     </footer>

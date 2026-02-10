@@ -7,9 +7,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 const navItems = [
-  { label: "Accueil", href: "#" },
-  { label: "Expertises", href: "#expertises" },
-  { label: "Agences", href: "#agences" },
+  { label: "Accueil", href: "/" },
+  { label: "Expertises", href: "/expertises" },
+  { label: "Agences", href: "/agences" },
+  { label: "Équipe", href: "/equipe" },
   { label: "Contact", href: "#contact" },
 ];
 

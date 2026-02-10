@@ -23,8 +23,9 @@ const crimson = Crimson_Text({
 });
 
 export const metadata: Metadata = {
-  title: "ERECApluriel - Expert-comptable Sud-Ouest",
-  description: "Votre expert-comptable dans tout le Sud-Ouest. 15 agences pour vous accompagner de la création à la transmission.",
+  title: "ERECApluriel - Expert-comptable Bordeaux et Sud-Ouest",
+  description: "Cabinets d'expertise comptable et gestion d'entreprise. 20 agences dans le Sud-Ouest pour vous accompagner de la création à la transmission.",
+  keywords: "expert comptable, Bordeaux, comptabilité, fiscalité, paie, audit, conseil gestion, Sud-Ouest",
 };
 
 export default function RootLayout({

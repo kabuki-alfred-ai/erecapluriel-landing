@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
 import ProfilesSection from "@/components/ProfilesSection";
 import MapSection from "@/components/MapSection";
 import ExpertisesSection from "@/components/ExpertisesSection";
@@ -10,9 +11,10 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen pt-20">
       <Header />
       <HeroSection />
+      <AboutSection />
       <ProfilesSection />
       <MapSection />
       <ExpertisesSection />

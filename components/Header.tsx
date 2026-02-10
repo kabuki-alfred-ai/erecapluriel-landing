@@ -1,112 +1,111 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
-const navLinks = [
-  { href: "#profils", label: "Profils" },
-  { href: "#agences", label: "Agences" },
-  { href: "#expertises", label: "Expertises" },
-  { href: "#temoignages", label: "Témoignages" },
-  { href: "#contact", label: "Contact" },
+const navItems = [
+  { label: "Accueil", href: "#" },
+  { label: "Expertises", href: "#expertises" },
+  { label: "Agences", href: "#agences" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#F7F5F3]/95 backdrop-blur-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-[#C65D3B] rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">E</span>
-            </div>
-            <span className="text-xl font-bold text-[#2C2A28]" style={{ fontFamily: 'var(--font-sora)' }}>
-              ERECA<span className="text-[#C65D3B]">pluriel</span>
-            </span>
-          </a>
+          <Link href="/" className="flex items-center gap-2">
+            <Image 
+              src="/images/ereca-pluriel-logo.jpg" 
+              alt="ERECApluriel" 
+              width={120} 
+              height={57}
+              className="h-12 w-auto"
+            />
+          </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-[#2C2A28] hover:text-[#C65D3B] transition-colors duration-200 text-sm font-medium"
+          <nav className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-[#2C2A28] hover:text-[#C65D3B] transition-colors font-medium"
               >
-                {link.label}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </nav>
 
-          {/* CTA & Phone */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a
-              href="tel:0556333930"
-              className="flex items-center gap-2 text-[#2E6B75] hover:text-[#C65D3B] transition-colors"
+          {/* CTA */}
+          <div className="hidden md:flex items-center gap-4">
+            <a 
+              href="tel:0556333930" 
+              className="flex items-center gap-2 text-[#2E6B75] font-medium"
             >
               <Phone className="w-4 h-4" />
-              <span className="text-sm font-medium">05 56 33 39 30</span>
+              05 56 33 39 30
             </a>
-            <a
+            <Link 
               href="#contact"
-              className="bg-[#C65D3B] text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-[#b54d2b] transition-colors"
+              className="px-4 py-2 bg-[#C65D3B] text-white rounded-lg hover:bg-[#C65D3B]/90 transition-colors"
             >
               Prendre RDV
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
+            className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 text-[#2C2A28]"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6 text-[#2C2A28]" />
+            ) : (
+              <Menu className="w-6 h-6 text-[#2C2A28]" />
+            )}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          className="lg:hidden bg-[#F7F5F3] border-t border-[#2C2A28]/10"
-        >
-          <div className="px-4 py-6 space-y-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="block text-[#2C2A28] hover:text-[#C65D3B] transition-colors py-2 text-lg font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-            <div className="pt-4 border-t border-[#2C2A28]/10 space-y-3">
-              <a
-                href="tel:0556333930"
-                className="flex items-center gap-2 text-[#2E6B75]"
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-white border-t"
+          >
+            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="text-[#2C2A28] hover:text-[#C65D3B] py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+              <a 
+                href="tel:0556333930" 
+                className="flex items-center gap-2 text-[#2E6B75] py-2"
               >
                 <Phone className="w-4 h-4" />
-                <span>05 56 33 39 30</span>
+                05 56 33 39 30
               </a>
-              <a
-                href="#contact"
-                onClick={() => setIsMenuOpen(false)}
-                className="block w-full bg-[#C65D3B] text-white px-5 py-3 rounded-full text-center font-medium"
-              >
-                Prendre rendez-vous
-              </a>
-            </div>
-          </div>
-        </motion.div>
-      )}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
